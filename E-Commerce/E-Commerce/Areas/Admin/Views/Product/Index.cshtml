@@ -1,0 +1,87 @@
+﻿<!--
+    We have to know that in the Controller of the Product we already retrun the list of the Categories in the IActionResult fuction
+    and We have to accept it here using the model as we want to use it in the view so the next line is resposable for accepting the 
+    list of the categories and use it in this file.
+    to do so we have to use the model followed by the data type of the acceptted data variable.
+-->
+@model List<Product>
+
+<div class="card shadow  border-0 my-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row-height">
+            <div class="col-12 text-center ">
+                <h2 class="text-white py-1">Product List</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body py-2">
+        <div class="row pb-3">
+            <div class="col-6">
+            </div>
+            <div class="col-6 text-end">
+                <a asp-controller="Product" asp-action="Create" class="btn btn-primary rounded-3">
+                    <i class="bi bi-plus-circle"></i> Create New Product
+                </a>
+            </div>
+
+        </div>
+
+        <table class="table table-bordered table-striped table row-height">
+            <thead class="alert-info">
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Author</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Price50+</th>
+                    <th>Price100+</th>
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model)
+                {
+                    <tr>
+                        <td>@p.Title</td>
+                        <td>@p.Description</td>
+                        <td>@p.Author</td>
+                            @foreach (var a in ViewBag.CategoryList)
+                            {
+                                if (a.Value == p.CategoryId.ToString())
+                                {
+                                    <td>@a.Text</td>
+                                }
+                    
+
+                            }
+                        <td>@p.Price</td>
+                        <td>@p.Price50</td>
+                        <td>@p.Price100</td>
+                        <td>
+                            <div class="w-100 btn-group" role="group">
+                                <!--
+                                    Here when we want to edit a specific Product we have pass its id so we have to use an
+                                     attribute asp-route-id which will take the object of Product id as a value.
+                                     This value will passed to the IActionResult Edit method to use it to get data for this Product.
+                                -->
+                                <a asp-controller="Product" asp-action="Edit" asp-route-id="@p.Id"
+                                   class="btn btn-success rounded-3 ">
+                                    <i class="bi bi-pencil-square"></i> Edit
+                                </a>
+                                &nbsp;
+                                &nbsp;
+                                <a asp-controller="Product" asp-action="Delete" asp-route-id="@p.Id" class="btn btn-danger rounded-3">
+                                    <i class="bi bi-trash3"></i> Delete
+                                </a>
+
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

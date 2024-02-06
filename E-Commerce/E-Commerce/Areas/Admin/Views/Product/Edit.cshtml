@@ -1,0 +1,99 @@
+﻿@model Product
+
+<div class="card shadow  border-0 my-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row-height">
+            <div class="col-12 text-center ">
+                <h2 class="text-white py-1">Edit Product</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body py-2">
+        <form method="post">
+            <div class="border p-3 mt-4">
+                <div class="row pb-2">
+                  
+                    <hr />
+                </div>
+                <div class="mb-3">
+                    <label class="bold">Product Name</label>
+                    <!--
+                        Now to specifie the submitting data distenation then we have to use asp-for attribute which accept the data and pass
+                        it for a specific attribute in the class inside the model.
+                    -->
+                    <input asp-for="Title" class="form-control bold" />
+                    <!--
+                        In the next line of code we will check the validation data in the view also we check the validated data in control
+                         this will give us the ability to check data in front end and backend.
+                    -->
+                    <span asp-validation-for="Title" class="text-danger bold"></span>
+                </div>
+                <div class="mb-3">
+                    <label class="bold">Description</label>
+                    <textarea asp-for="Description" class="form-control bold" rows="6"></textarea>
+                    <span asp-validation-for="Description" class="text-danger bold"></span>
+                </div>
+                <div class="mb-3">
+                    <label class="bold">Author</label>
+                    <input asp-for="Author" class="form-control bold" />
+                    <span asp-validation-for="Author" class="text-danger bold"></span>
+                </div>
+                <div class="mb-3">
+                    <label class="bold">Category</label>
+                    <select asp-for="CategoryId" asp-items="ViewBag.CategoryList" class="form-select bold">
+                        <option disabled selected>--Select Category--</option>
+                    </select>
+                    <span asp-validation-for="CategoryId" class="text-danger bold"></span>
+                </div>
+                <div class="mb-3">
+                    <label class="bold">ISBN</label>
+                    <input asp-for="ISBN" class="form-control bold" />
+                    <span asp-validation-for="ISBN" class="text-danger bold"></span>
+                </div>
+                <div class="mb-3">
+                    <label class="bold">Price</label>
+                    <input asp-for="Price" class="form-control bold" />
+                    <span asp-validation-for="Price" class="text-danger bold"></span>
+                </div>
+                <div class="mb-3">
+                    <label class="bold">List Price</label>
+                    <input asp-for="ListPrice" class="form-control bold" />
+                    <span asp-validation-for="ListPrice" class="text-danger bold"></span>
+                </div>
+                <div class="mb-3">
+                    <label class="bold">Price50+</label>
+                    <input asp-for="Price50" class="form-control bold" />
+                    <span asp-validation-for="Price50" class="text-danger bold"></span>
+                </div>
+                <div class="mb-3">
+                    <label class="bold">Price100+</label>
+                    <input asp-for="Price100" class="form-control bold" />
+                    <span asp-validation-for="Price100" class="text-danger bold"></span>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-success form-control rounded-3"><strong>Update</strong></button>
+                    </div>
+                    <div class="col-6">
+                        <a asp-controller="Product" asp-action="Index" class="btn btn-dark form-control rounded-3"><strong>Back</strong></a>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--
+    In the following Section we make a scripts section to check the client validation and check all the validation in the
+    client side instead of doing it in the server side.
+-->
+@section scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+

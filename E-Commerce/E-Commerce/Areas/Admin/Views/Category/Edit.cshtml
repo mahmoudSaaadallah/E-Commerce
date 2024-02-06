@@ -1,0 +1,62 @@
+﻿@model Category
+
+<div class="card shadow  border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row-height">
+            <div class="col-12 text-center ">
+                <h2 class="text-white py-1">Edit Category</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body py-2">
+        <form method="post">
+            <div class="border p-3 mt-4">
+                <div class="row pb-2">
+                  
+                    <hr />
+                </div>
+                <div class="mb-3">
+                    <label class="bold">Category Name</label>
+                    <!--
+                        Now to specifie the submitting data distenation then we have to use asp-for attribute which accept the data and pass
+                        it for a specific attribute in the class inside the model.
+                    -->
+                    <input asp-for="Name" class="form-control bold" />
+                    <!--
+                        In the next line of code we will check the validation data in the view also we check the validated data in control
+                         this will give us the ability to check data in front end and backend.
+                    -->
+                    <span asp-validation-for="Name" class="text-danger bold"></span>
+                </div>
+                <div class="mb-3">
+                    <label class="bold">Display Order</label>
+                    <input asp-for="DisplayOrder" class="form-control bold" />
+                    <span asp-validation-for="DisplayOrder" class="text-danger bold"></span>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-success form-control rounded-3"><strong>Update</strong></button>
+                    </div>
+                    <div class="col-6">
+                        <a asp-controller="Category" asp-action="Index" class="btn btn-dark form-control rounded-3"><strong>Back</strong></a>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--
+    In the following Section we make a scripts section to check the client validation and check all the validation in the
+    client side instead of doing it in the server side.
+-->
+@section scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+

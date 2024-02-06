@@ -1,0 +1,66 @@
+﻿<!--
+    We have to know that in the Controller of the category we already retrun the list of the Categories in the IActionResult fuction
+    and We have to accept it here using the model as we want to use it in the view so the next line is resposable for accepting the 
+    list of the categories and use it in this file.
+    to do so we have to use the model followed by the data type of the acceptted data variable.
+-->
+@model List<Category>
+
+<div class="card shadow  border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row-height">
+            <div class="col-12 text-center ">
+                <h2 class="text-white py-1">Category List</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body py-2">
+        <div class="row pb-3">
+            <div class="col-6">
+            </div>
+            <div class="col-6 text-end">
+                <a asp-controller="Category" asp-action="Create" class="btn btn-primary rounded-3">
+                    <i class="bi bi-plus-circle"></i> Create New Category
+                </a>
+            </div>
+
+        </div>
+
+        <table class="table table-bordered table-striped table row-height">
+            <thead class="alert-info">
+                <tr>
+                    <th>Name</th>
+                    <th>Display Order</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var c in Model.OrderBy(c => c.DisplayOrder))
+                {
+                    <tr>
+                        <td>@c.Name</td>
+                        <td>@c.DisplayOrder</td>
+                        <td>
+                            <div class="w-75 btn-group float-end" role="group">
+                                <!--
+                                    Here when we want to edit a specific Category we have pass its id so we have to use an
+                                     attribute asp-route-id which will take the object of category id as a value.
+                                     This value will passed to the IActionResult Edit method to use it to get data for this category.
+                                -->
+                                <a asp-controller="Category" asp-action="Edit" asp-route-id="@c.Id"
+                                   class="btn btn-success rounded-3">
+                                    <i class="bi bi-pencil-square"></i> Edit
+                                </a>
+                                &nbsp;
+                                &nbsp;
+                                <a asp-controller="Category" asp-action="Delete" asp-route-id="@c.Id" class="btn btn-danger rounded-3">
+                                    <i class="bi bi-trash3"></i> Delete
+                                </a>
+
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

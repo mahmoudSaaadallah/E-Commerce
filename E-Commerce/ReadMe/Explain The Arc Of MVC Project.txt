@@ -1,0 +1,857 @@
+when we examine the project file it belongs to a project so we will right click on 
+
+OnlineBookShop web which is our project and there we have something called as edit 
+
+project file, when I open that you can see it is pretty simple 
+
+right now  in the  older  versions of dotnet core this was more complicated but 
+
+they are simplifying  this with the newer version inside Property Group we have 
+
+something called as Target  framework   which  says that we are using net 8.0 
+
+which is the.net 8 framework then we have something  called  as non-label and that is 
+
+enabled now what exactly this nullable  will do I will    cover that in 
+
+the later videos because it is too  early to go into those details and  next 
+
+we have implicit using statements if you  are coming from any front-end library or any 
+
+other Frameworks you should be familiar with some import statements that you write to 
+
+import other libraries now because implicit using  is enabled here the default using 
+
+or import statements from the.net libraries we will not have to write all of 
+
+that it will  automatically be included with our project if  you disable that then 
+
+basically you will  have to explicitly add import statements nothing more complicated but it 
+
+is a convenience to have implicit using enabled and that is the setting we 
+
+will keep as well project file basically has all the project properties which are 
+
+set by dotnet right here and on top of that when you add some
+
+of the nuget packages or npm packages then you have to add them in the project  
+
+file now when we add new get package I will show you how the project file 
+
+here gets updated in the upcoming videos but right now when we have 
+
+the project  file  we have the.net Target framework that is really important and we have 
+
+nullable which has  been introduced from.net sexI will  explain that in later videos aswell and 
+
+we have implicit using  nothing that fancy right now but  when we add more things 
+
+to our project I will  show you how the project file gets  updated with that 
+
+brief overview let me continue from  the next video after the project file we  have 
+
+something called as connected services but that  is empty we will ignore that next we have 
+
+ the dependencies when we build a dotnet  application we always or most likely will be 
+
+having more  packages that will be added for  more functionalities like if we have to 
+
+access database if we  want some payment integration we  will be adding more packages right 
+
+now in our dependencies we do  not have any package  now when we have multiple 
+
+project we might also add project as a  dependency so when  we do that this 
+
+dependencies will automatically reflect t at and we will do  that in  future videos so 
+
+do not worry dependencies basically mean that this project is dependent on  some  packages or 
+
+some other project but we do not have any dependencies on your get package   or 
+
+any other project right now then we have a properties folder and there we have launch  
+
+ settings.json now this launch settings.json basically defines a file which will say that when we are 
+
+ running  or debugging the application right here when we click on https what should be 
+
+some  settings that  should be used you can see here there is IIs settings and 
+
+there it  is saying that  you should use the URL which is http1 with the 
+
+port number but  if it is an  https this will be the port number then 
+
+if we scroll down  we have something called as  profiles these profiles resemble everything that 
+
+you see here you can  see we have an HTTP profile  https profile and IIs 
+
+Express in profile we are saying  that when we use HTTP profile we  want to 
+
+run the application on this URL and  we are setting some environment variables envi onment  
+
+variables will basically be like a global variable  that is defined and we can use that 
+
+in  application as an example let's say if  you are setting asp.net core environment to 
+
+development then inside  the code you can check this  variable if that is development you 
+
+might use a different development  database if it is production  you might be using a 
+
+production database same applies for let's say  if you have a  payment integration if it 
+
+is development you want to use your development keys  that way you  do not have 
+
+to use a real credit card but if it is production  then you  want to 
+
+use the production key that way real credit card payments can be processed  so  we 
+
+can Define all of those environment variables and profiles in launch settings.json if you scroll   
+
+down we have an https profile and that is what we are using right here you can 
+
+  toggle between the profiles by selecting which profile you want to run the application with 
+
+we  are  using https here and here we have the application URL let me hide 
+
+that and  that is  7 69 I can update that to be 7001 and let 
+
+me run this  perfect when we  execute that you can see the application is now 
+
+running on Port that  way you can toggle  some of the properties we also have 
+
+IIs Express here  and  you can modify them as  per your requirement now typically 
+
+you do not modify the profiles  that much but I wanted to  give you a 
+
+quick five minutes overview on launch settings.json  perfect whoops let me stop the application  here 
+
+next file that I want to show you  is in the controllers well in the launch 
+
+ settings let me revert back the change so  here I can undo my git change 
+
+and that  will bring back the original board now  of course you can use whatever 
+
+you want but I'm  not going to change that with  that we have covered launch 
+
+settings and the project file next  folder that we have is  www.root folder and this 
+
+is an important folder in the application this  folder will basically host  all of the 
+
+static content of your.net core or your project now what  is static content  static content 
+
+basically means any CSS a y JavaScript any nuget packages or   third-party libraries  or 
+
+if you have any images files PDFs PowerPoint and so on  anything that  is  
+
+static which does not  have an HTML code goes into the www root  folder  
+
+  so you can see right here we have a global site dot CSS which is 
+
+already   being used in the application so if you want to add some styling here 
+
+you can  always  add that next we have the JS file which is site.js but 
+
+that is empty  we just  have a basic template there inside the lib folder we 
+
+can see bootstrap jQuery  jQuery validations all  of them are included by default when you 
+
+create an MVC application in  future when we have  to add images or anything else 
+
+which is static we will always  add them in one place  which is www.root folder 
+
+always remember that after that we have  controllers models and views that I  will cover 
+
+in the upcoming videos but after that we  have something called as app settings.json and  
+
+then if you expand that you can see we  have app settings Dot development.json app settings 
+
+will  be the plac where you will host all  of your connection string now when 
+
+I mean connection  string it is not just connection string  but basically any secret key 
+
+that you have for your  application an example of that will  be for your email 
+
+you might be using sendgrid or you  might have a secret key  for email you 
+
+will add that in app settings when you have  database connection you will  add those 
+
+secret keys there if you are using Azure blob storage or  Azure storage account  you 
+
+will be storing all of those Connection in one place that way when  you have  
+
+to change a connection you always know that you have to go to app settings.json  and 
+
+ not go through all the code trying to find out where is that connection all of 
+
+  your connection all secret Keys should always go inside app settings.json now here you see 
+
+there is   app settings.json and app settings.development.json if you remember inside launch settings.json we have 
+
+the asp.net core  environment  now based on this environment it will be  configuring to 
+
+use a different   connection string   like let's say in production you will  
+
+have an environment variable with  the  name  of production then inside app  settings.json 
+
+well in the project here   let me add and  show you that new file 
+
+we  will be adding a new  item  and we will  search for Json 
+
+file we have  the app settings file  I will call that  app  settings 
+
+Dot production.json  we save that here and what  will happen  with dotnet core is 
+
+ it will dynamically  use that connection whoops I  have a  spelling mistake there 
+
+fix that  so  perfect  now in production if  you are asp.net  core 
+
+environment name this is  production  then it will be using  the connection  string 
+
+and all the settings from this   app settings Dot production.json   so it is 
+
+pretty smart on what connection  it will  use  but we will  uncover that 
+
+in the upcoming  videos right now we do not  want to go   into 
+
+that complexity  only thing you should remember is all of   your secrets or  
+
+connection string will  go in app settings.json file  let me remove the  production file 
+
+ that I  added right now we are not going to use  that but  
+
+in  the final section where we  will be deploying the code I will modify  
+
+that   and show you how things work  so perfect with that in the next 
+
+video  Let's   examine program.cs which is a  critical file  now I want 
+
+to cover a main  file  which is  program.cs  in the older versions of 
+
+dotnet core we  used  to have  two files we had program.cs  and we 
+
+had startup.cs  but with the  newer version the.net  team  has combined both of 
+
+those file in one  file which  is the program.cs file   now here let 
+
+me zoom out and when we  have  to configure a.net application   there are 
+
+two things that you should  remember  first  we have to add some services  
+
+to  our container and next we have to   configure the request pipeline  in 
+
+the  program.cs those are the two  things that are  being handled  first you 
+
+can see there  is builder.web  application that creates a builder  on  that Builder 
+
+we are adding some services   right now we are using MVC  for our  
+
+architecture and that is why  onbuilder.services  it has added  something called  as ADD 
+
+controllers with  views  that way it knows  that okay our  application  will 
+
+be using controllers  and those are already defined in the.net   project so I  
+
+know how to handle that  service  in future we will be  adding many more 
+
+  services inside  program.cs file  like if we have to inject something   
+
+using  dependency injection which is a  very critical aspect in.net core we will  inject 
+
+ all  of them inside the services  right here  and the next thing that 
+
+we have   is we  have to configure the request pipeline  pipeline basically means 
+
+that when a    request comes to an application how do  you want to 
+
+process that  now one  thing  that you'll see on line 9  here is 
+
+we have app.environment dot is   development   this is the same environment variable  
+
+that we saw in launch settings.json   its development is  a built-in Helper and  
+
+you can see we also have its production   a staging but  if you have 
+
+some custom  environment name you can use its   environment and pass it  there 
+
+as well  that's too technical for now but I  just  wanted to give you 
+
+ some overview on how  the environment variables are being  used  here we are 
+
+saying that  if the  environment is not development then we   want to use 
+
+an exception Handler and  we  want to redirect to home error  page  but 
+
+if it is development then we  want to  see that exception that  is why 
+
+we have  this if condition  after  that in our pipeline we have  added 
+
+ https redirect and app.use static files  when we  add the use static files  
+
+it will  configure the www root path and all the   static files in there 
+
+ will be accessible  in our application  after that we are adding  routing to 
+
+the   request Pipeline and we have  authorization  now ignore this authorization right  
+
+now   we will cover that when we have  authentication and authorization in our  
+
+project    but by default in the request pipeline  just have that authorization is 
+
+added  if   you even forget that that's okay  next we have something that 
+
+is important  now when   we have an application we are  telling it how 
+
+the routing should work  and  for  that we have app.map controller  route it 
+
+basically has a default pattern  that  if nothing  is defined in the route  
+
+you should go to something called as a   home controller  inside there you should 
+
+ go to index action and ID here can  be  defined or  not  
+
+question mark in.net basically means  that ID can be  defined or it can be  
+
+null  so we are defining the default route  that  it should follow  and 
+
+finally  we have app.run that will  basically run the project   now it might 
+
+be confusing on  what is  going on here why do I  need program.ces  
+
+file what is all this  middleware  pipeline very strange words  do  not worry 
+
+when we progress with the  course  everything will start making much  sense   
+
+the reason I spent five minutes on this   file right now is you have  
+
+a rough idea  that there is one file where if  I have  to add 
+
+ a service to The Container or I  have to configure the  middleware I have 
+
+  to go to program.cs file  that is all that I want you  to 
+
+digest   from this 5 minutes and have a rough  idea of what I talked 
+
+ about if  nothing  here makes sense that's okay you should  only remember that 
+
+when you  have  to  configure something in the pipeline  program.cs is the place 
+
+you have to go    with that understanding let me continue  from the next 
+
+video  if I go to   solution Explorer and open  the program.cs file you 
+
+can see in the  routing we  have  something called as  controller and action 
+
+ remember these keywords for now  if  you open  the solution Explorer again  
+
+you will notice we have a folder with   the name of  controllers we have 
+
+models  and we have views  that basically defines  the MVC keyword   MVC 
+
+stands for models views and  controllers  but how do  all three of them come 
+
+  together  let me show you a brief overview about   that  in 
+
+the MVC  architecture as I said first  letter stands for model   represents the 
+
+shape of the data  so if  you have any tables or if  you have 
+
+any  classes model will have  all of that  and what I mean  by 
+
+class is let's say  you are building  an e-commerce  application where you have  
+
+products you  will have orders you will have order   details shopping cart and much 
+
+ more  models will basically have all of those  class  files  next we 
+
+have  something called as view  which stands for the user interface   so whatever 
+
+you see  on the screen that  is the view part of the MVC application  
+
+ the model  represents the data and what  you see on the screen is the 
+
+user   interface  like if you have a form or if  you have a 
+
+fancy chart that  you  see on  the browser all of that is represented  
+
+by the view  view   will control the HTML element of  your web project 
+
+ now you have the view where   you have the  fancy HTML that you 
+
+see on the screen  but when you  have  the data you will have  
+
+to process or even fetch that data  because  data might  be inside database  
+
+so you need something to fetch that data  and  display that in  a table 
+
+on your HTML  view that you have  that missing  piece or heart of  
+
+the MVC  application is the controller which is  the last  piece of the missing 
+
+block  here  controller will basically handle the  user request and  it will act 
+
+as an   interface between model and view  what happens is when  a user 
+
+clicks on  one of  the button or opens the website  the request  will 
+
+first go to the  controller   controller will then determine what  model it  
+
+has to fetch it will retrieve  all the  data that is needed using the  
+
+ models and then it will pass all the  data  that is required to be 
+
+displayed  to  the view component  what view will do is  it will add 
+
+all the   data in its HTML formatting and pass  that data back  to 
+
+the controller and   then controller will send that response  back and the data or 
+
+ website will be   displayed on your screen  so one thing that you should 
+
+always   remember is  in an MVC architecture  controller is heart of your application 
+
+ and it might  sound  like I'm repeating  this over and over again but 
+
+MVC  architecture can be tricky   to understand  if you are getting started  
+
+so let's walk through that again when a    user opens a website it goes 
+
+to a  controller  controller will then fetch  data  from the  models or 
+
+wherever it has to do process  that data like  there might  be some  
+
+conversion or anything that it has to do  and once  the data is  in 
+
+good shape it  will pass that data to The View   on that static HTML 
+
+ it will add the data  that controller has passed like in  view  we 
+
+might have  defined that there is a  table but what data that  table needs 
+
+we  will pass  that from controller to the  view then view will  add 
+
+that data in the  HTML  and final content it will return  back to  
+
+the controller which will  ultimately be passed  on to the user  screen and user 
+
+ can see the complete  website  this my  friends is the basic  architecture 
+
+of  an MVC application  our controller can have many action   method action method 
+
+basically Define   the end points in a controller and we  will  uncover that 
+
+in the next  video but  there is something called as action  methods there  
+
+as well  if  I go back to the website here you can  see where 
+
+we  have the default  route we  are saying that if nothing is defined  
+
+you should go  to the  home controller and  there you have index action and 
+
+ something called as ID    Let's ignore that  right now you know the 
+
+basic MVC  architecture and let's cover   this  routing in the next video  
+
+now we want to understand routing in an    MVC application  routing basically defines 
+
+that in the  URL when you type something where  it   should send that 
+
+request to  we have configured a default route here   but when  it comes 
+
+to an MVC application  we have a certain pattern  and  before I show  
+
+you that in the  application let me walk you through a   presentation here to 
+
+give  you a rough  idea  you can see the URL pattern  for routing 
+
+ is considered  after the domain name  localhost and port number is the  domain 
+
+ name  this localhost  can be google.com can  be.net mastery.com or whatever you  
+
+want  when we have to consider  routing we  remove that piece and anything after 
+
+  that is considered the routing pattern   in an MVC application the typical route 
+
+  that we have is a controller and then   action  those are the 
+
+two words  that you should  always always remember and write it  down  there 
+
+is a controller  and inside  controller there are action methods  let me  show 
+
+you that with an  example  here in this first URL you see we have  
+
+ the domain name which  is localhost and  then we have something called as forward 
+
+ slash  category forward slash  index and  then a number three  so the 
+
+first thing that you  see after   the domain is the controller name and  
+
+next thing with the forward slash  will   be an action name  after that 
+
+if there is anything there  that will   be the ID  ID is an 
+
+optional field that we already  saw right here you   can see that is  
+
+question mark  so if we go back what is the  first  thing  after 
+
+the domain name that is the  category after that we have  index and   
+
+then if there is anything present that  will be populated in the  ID  that 
+
+ is the default pattern that has  been defined in the dotnet project   now 
+
+of course  we can modify some things  here and we will do that  in 
+
+the later  videos  but this is the default pattern  we have controllers and  
+
+inside there we  have action   based on that I have an example here and 
+
+  I want you to find out  that based on the  URL what will 
+
+be  the category and what  will be the  action and if there is an 
+
+ID   or not  the first example here category is  the  controller and 
+
+index is the  action we do  not have any ID so ID  will be 
+
+no  after that  we only have something called  as category  if there  
+
+is no action defined then  by  default the action will be index action  we 
+
+do  not have any action  defined in the  second example so controller will be 
+
+ category action  will be index  and ID  will be now  in the 
+
+third example here we have   controller  name as category action name  as edit 
+
+and then we have some ID with    the value of 3.  and the 
+
+final example here we have a  controller with   the name of product we  
+
+have an action with the name of details  and ID   with a value of 
+
+3.  now you might be wondering what is the  importance  of  this assignment 
+
+ well it is really important  from now onwards if you look  at a  
+
+URL  that is using MVC architecture you can  tell what is the  controller name 
+
+and   what is the action name  now if I go back here  we 
+
+are saying that   the default controller is home and  action is index   
+
+that basically means that if  nothing is  defined after the domain name it is  
+
+ telling the application that you should   go to home controller and index action  
+
+method   that is the default route that.net  team  has configured in program.cs  
+
+if you  want you can change that default  route  but that is the default 
+
+route and   you know how that will be converted to a   URL if 
+
+you want  now  enough talking let me show you  routing in action  in 
+
+the next video  now  you have a rough idea of what is a  controller 
+
+ and what is an action  based  on the URL  so basically if you 
+
+have a  URL from that   you can tell me what is the controller  
+
+what is the action  and what is  ID  with that rough idea let me 
+
+go back to  the project  here and  I will open  solution Explorer  
+
+you can see there are three folders here    that we have not covered yet 
+
+ there is a view folder there is a model    folder and there is 
+
+a controller folder  and controller you can see we have    something called as 
+
+home controller  when we are naming any controller one  thing that  is  important 
+
+is the  controller keyword  so if you have a home controller you   should 
+
+ have the name followed by the  controller keyword and that must be   placed 
+
+inside the  controllers folder  if you place it somewhere else it will  not  
+
+work  these are  the rules that are defined for  the MVC architecture  so 
+
+ in controllers we have home   controller  in models we just have one model 
+
+which   is error view model it  is a basic class  file and it 
+
+has two  properties nothing  fancy and we don't  want to go into those  
+
+detail right now   another thing that I want to point  out  is when 
+
+a request comes to  controller it  is not always required that a  model is 
+
+ needed  sometimes it  can render a view which can  be a static  
+
+View and no model is needed   in that case  but I want you to 
+
+keep  that in mind that   model is not always needed  perfect so now 
+
+we have a  home controller  here  and all the views related to that  
+
+controller will be placed inside  the  views  folder with the exact same name as 
+
+ controller and this will be home  and not   home controller controller is a 
+
+keyword  here so actual name of the controller  is   home and that will 
+
+be the name of folder  inside views folder  that   is the architecture for 
+
+MVC  we have controllers and all the views  that corresponds to   that controller 
+
+must  be placed inside the views folder with a  subfolder of the  exact  
+
+name as the  controller name  so perfect we can see in home controller   
+
+we  have an index View and we have a  privacy View  if I  
+
+run the application  here  and right there you can see we have a  home 
+
+ page and a privacy  page  right now we only have one controller in  
+
+our  application so both of the  view  belongs to the same controller  when 
+
+we load  the page you can see the   URL we do not have any 
+
+controller name   or action name  we just have  this welcome text  let's 
+
+see where the text  is  inside home view we have the  index view  
+
+if I open that that  is the exact text  that we see right  here 
+
+ we have the welcome we  have learn about  and we have an anchor tag 
+
+ with building  web apps with  asp.net core  so what we see on the 
+
+home page  here  basically is displayed  from this index  view inside the home 
+
+folder  when we  click on privacy here  we have  the privacy policy and 
+
+if I open the  privacy.cshtml  file  that  is the data that is being 
+
+displayed  right here  ignore this view  data for  now but you  can 
+
+see the paragraph tag is exactly  what we have    now something interesting that 
+
+you  should notice here is when we are going  to   the Privacy page 
+
+the URL here is  something that we have seen before with  routing    
+
+based on this URL can you tell me what  is the controller name and  what 
+
+ is the  action name  the controller name is home controller  and action  
+
+name is  privacy  now how does that come together  I will show you that 
+
+ but before that  let  me change this to be index so home  controller 
+
+index  action press enter and   perfect we get back to the home page  
+
+how did  that happen  when we  click on home page it does not  
+
+define anything in  the route and that is   because the default route that we 
+
+have  here we  are saying that if nothing is   defined go to home 
+
+controller and index  action   so that means that even if you  define  
+
+home controller and index action it  will  take you to basically the same page  
+
+ so I hope you can see  how things are  coming together  the main 
+
+question   how does it know where  it has to load  this particular view 
+
+that we see   let me show that  we have home controller  and index 
+
+action  for that let  me go to the  home  controller here and we 
+
+have few things  right here you  can see there  is  something here but 
+
+ignore that  what I want to show you  is in  home  controller what 
+
+we have down here these  are called the action method  on  line 11  
+
+we basically have a Constructor for our  class and I will explain   you that 
+
+in  later videos but other than that we have  three action methods here   
+
+and they are  returning something called as I action  result  I was telling  
+
+you  before that there are  two things controller and action  what we have defined 
+
+ in the  URL we are  telling go to the home controller and  get 
+
+the  index action   so at that point it will go to the home  
+
+controller and  it will execute this   index action  in index action we do 
+
+not have any  code  we are only  saying return View  what does this 
+
+mean  well it  basically says that we have to   return some view inside 
+
+the views folder  but  what view does it have to return   and that 
+
+is where the naming that we   have given to folder comes into picture   
+
+if we have not defined a name  inside  this round bracket it will use the 
+
+ same  name as the action name   so it will return an index View 
+
+ but  where will it get that view  from  it will get that view 
+
+from the home   controller so it will go  to the home  folder inside 
+
+views and there it will   get the index.cs HTML   and if we type 
+
+home forward slash  privacy it will execute  the Privacy   action method and the 
+
+view that it will  return will be the Privacy  view because   that is 
+
+the name of the action method  now we ignore the error  action  method  
+
+that we have here but you can see how  index and privacy are   executed 
+
+ now with Visual Studio we have great  debugging functionality  for that what you  
+
+ have to do is right  here when you hover you can see a circle  
+
+ Dot   if you click there that means you have  added a debugger  
+
+let  me add  that in both the lines here  and if I go back 
+
+here and  if I execute   home index and press enter  you can see 
+
+the breakpoint is  being hit  here   that means that this statement is being 
+
+ executed right now   so that proves that  it is going to the  
+
+index action method  we  will have to hit continue here  and  then it 
+
+will navigate or continue  execution  and bring back the website  when  we click 
+
+on privacy it will go to   the Privacy action method and we  continue  
+
+here and perfect  so with that I  hope you have a rough  idea of 
+
+how  routing works  but let me show  you something before I  end the 
+
+video  when  we are returning back to the  view  actually let me go 
+
+to program here and   rather than home controller index  action  let me set 
+
+the default to home and  privacy  and let me run  that  now when 
+
+the application loads we do not  have any  URL defined so  on the home 
+
+page  it will invoke the Privacy action method  and  that view  will be 
+
+returned  perfect let me roll back that change and  I will  go  back 
+
+here  to controller there when I am returning  the view as I said   
+
+before if nothing is  defined here it will look for the same  view with the 
+
+  name of the action method  in the folder of that controller name  now 
+
+rather  than  that I am saying that  when the index is being called I 
+
+want   you to  return a view with the name of  privacy  in 
+
+that case it  will go to  the home  folder and look for a view 
+
+with the name   of privacy and Views  have an extension  of dot CS 
+
+HTML  let me run  this  Now the default  page it again loads the 
+
+ Privacy page but to prove  you that if I  go  to home and 
+
+index privacy view is  being loaded   so you can always overwrite what  view 
+
+ will be returned but this is the  default  that we have if nothing is 
+
+ present  I will also roll back that  change to  keep things simple for 
+
+now   but I hope with that you have  a rough  idea of how 
+
+routing works and again  in  controller we will have  action methods  that will 
+
+Define what view needs to be   returned back  now  MVC is tricky to 
+
+understand as I  have said before so  I do not expect  you  to 
+
+understand 100 of the things that I'm  explaining right  now  but  even if 
+
+you are understanding 50 to   progress and when you actually  start   implementing 
+
+this in the upcoming  section everything will start making  much more sense  and  
+
+you will understand  why this pattern is so powerful  with that overview let me  
+
+ continue from  the next video  now that we have seen routing we know  
+
+how   the views are being displayed based  on the URL  but if I 
+
+run the  application  again that  is not the only thing that is being  
+
+displayed on the  page   because if I open the  index.cshtml you can see 
+
+there is a   welcome text and  a learn about  that we see right 
+
+here  but what about  this header that we  have  on the top and 
+
+we also have a footer how   is that getting loaded   and for that 
+
+we have to go to solution   in views folder we have seen  what is 
+
+ there in the home view but we  have  something called as shared and  
+
+we have  something called as underscore view   Imports and underscore view start  if 
+
+you  have worked with older.net  application you might  remember something  called as Master 
+
+page and a  child page  underscore layout is the  master page of  your 
+
+complete application  if I  open underscore layout here you can   see we have 
+
+doctype HTML we have a head   here with some styling we  have a body 
+
+ and there we have the header in header   you can see  we have 
+
+the home and privacy  links here  and we scroll  down we have  something 
+
+ called as render body  this render body is a built-in helper  in   
+
+the MVC and that will display anything  that we want in the body   now 
+
+ what that body will be that will be  determined by what is returned from the 
+
+   controller  if we return the index view it will  display that view 
+
+right here    after the vendor party we have a footer  here where we 
+
+are displaying the  bulky   web if we go back to the application  that 
+
+is what we have  right here   so underscore layout will be the master  
+
+page of your application or  the main   page of your application always remember  
+
+that  and in underscore layout  we will add all   the JavaScript all the 
+
+CSS that we want  to use  globally in the application   with that we 
+
+have something in the  anchor tags like  ASP controller ASP  action these  are 
+
+called tag helpers but  ignore them when the  time is right I  will explain 
+
+ you why we need them  right now underscore  layout is the  master page 
+
+of your  application and  whatever view we return from  the  controller that will 
+
+be displayed in the   render party content of underscore   layout  after that 
+
+let's go back and we have   something called as validation scripts     

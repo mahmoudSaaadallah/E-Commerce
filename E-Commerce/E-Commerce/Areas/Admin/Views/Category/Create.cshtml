@@ -1,0 +1,73 @@
+﻿<!--
+    We have to know that when we add a new category we have to send our data to the Category class so we have to add it in the
+    Model so the next line of code use the Category class with model to use it in our code.
+    We don't have to return the new object of the category from inside the IActionResult Create method as we alread uses here a 
+    category class, so we don't have to retrun it as it will make a new object by default.
+-->
+@model Category
+
+<div class="card shadow  border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row-height">
+            <div class="col-12 text-center ">
+                <h2 class="text-white py-1">Create Category</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body py-2">
+        <form method="post" class="row">
+            <div class="border p-3 mt-7">
+                <div class="row pb-2">
+                    <hr />
+                </div>
+                <div class="mb-3">
+                    <label class="bold">Category Name</label>
+                    <!--
+                        Now to specifie the submitting data distenation then we have to use asp-for attribute which accept the data and pass
+                        it for a specific attribute in the class inside the model.
+                    -->
+                    <input asp-for="Name" class="form-control bold row-height" />
+                    <!--
+                        In the next line of code we will check the validation data in the view also we check the validated data in control
+                         this will give us the ability to check data in front end and backend.
+                    -->
+                    <span asp-validation-for="Name" class="text-danger bold"></span>
+                </div>
+                <div class="mb-3">
+                    <label class="bold">Display Order</label>
+                    <input asp-for="DisplayOrder" class="form-control bold row-height" />
+                    <span asp-validation-for="DisplayOrder" class="text-danger bold"></span>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-success form-control rounded-3"><strong>Create</strong></button>
+                    </div>
+                    <div class="col-6">
+                        <a asp-controller="Category" asp-action="Index" class="btn btn-dark form-control rounded-3"><strong>Back</strong></a>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </form>
+    </div>
+</div>
+<!--
+    We have to know that the form in html has a method attribute which accept two different values 
+    - Get: This method appends the form data to the URL in the form of query parameters. It is suitable for forms that
+             retrieve data from the server, and the data is visible in the URL.
+    - Post: This method sends the form data to the server in the request body. It is suitable for forms that submit sensitive  
+            or large amounts of data, and the data is not visible in the URL.
+-->
+
+<!--
+    In the following Section we make a scripts section to check the client validation and check all the validation in the 
+    client side instead of doing it in the server side.
+-->
+@section scripts{
+    @{
+        <partial name = "_ValidationScriptsPartial" />
+    }
+}
