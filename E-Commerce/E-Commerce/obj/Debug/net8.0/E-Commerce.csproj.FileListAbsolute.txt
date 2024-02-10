@@ -20,9 +20,7 @@ G:\c#Project\E-Commerce\E-Commerce\obj\Debug\net8.0\staticwebassets\msbuild.buil
 G:\c#Project\E-Commerce\E-Commerce\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.E-Commerce.props
 G:\c#Project\E-Commerce\E-Commerce\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.E-Commerce.props
 G:\c#Project\E-Commerce\E-Commerce\obj\Debug\net8.0\staticwebassets.pack.json
-G:\c#Project\E-Commerce\E-Commerce\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 G:\c#Project\E-Commerce\E-Commerce\obj\Debug\net8.0\scopedcss\bundle\E-Commerce.styles.css
-G:\c#Project\E-Commerce\E-Commerce\obj\Debug\net8.0\scopedcss\projectbundle\E-Commerce.bundle.scp.css
 G:\c#Project\E-Commerce\E-Commerce\obj\Debug\net8.0\E-Commerce.dll
 G:\c#Project\E-Commerce\E-Commerce\obj\Debug\net8.0\refint\E-Commerce.dll
 G:\c#Project\E-Commerce\E-Commerce\obj\Debug\net8.0\E-Commerce.pdb
@@ -265,3 +263,8 @@ G:\c#Project\E-Commerce\E-Commerce\bin\Debug\net8.0\runtimes\win\lib\net7.0\Micr
 G:\c#Project\E-Commerce\E-Commerce\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
 G:\c#Project\E-Commerce\E-Commerce\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 G:\c#Project\E-Commerce\E-Commerce\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
+G:\c#Project\E-Commerce\E-Commerce\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+G:\c#Project\E-Commerce\E-Commerce\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+G:\c#Project\E-Commerce\E-Commerce\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+G:\c#Project\E-Commerce\E-Commerce\obj\Debug\net8.0\scopedcss\projectbundle\E-Commerce.bundle.scp.css
+G:\c#Project\E-Commerce\E-Commerce\obj\Debug\net8.0\E-Commerce.MvcApplicationPartsAssemblyInfo.cs

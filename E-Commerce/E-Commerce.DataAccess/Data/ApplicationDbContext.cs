@@ -1,6 +1,7 @@
 ﻿using E_Commerce.Models;
 using E_Commerce.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Drawing;
 namespace E_Commerce.DataAccess.Data
 {
     public class ApplicationDbContext : DbContext 
@@ -17,7 +18,6 @@ namespace E_Commerce.DataAccess.Data
                 new Category { Id = 3, Name = "History", DisplayOrder = 3 }
                 );
             builder.Entity<Category>().HasIndex(c => c.DisplayOrder).IsUnique();
-
 
             builder.Entity<Product>().HasData(
                 new Product
@@ -102,11 +102,11 @@ namespace E_Commerce.DataAccess.Data
                     Price50 = 22,
                     Price100 = 20,
                     CategoryId = 1,
-                    ImageUrl= ""
-                }
-                );
+                    ImageUrl = ""
+                });
+           
         }
         public DbSet<Category> categories { get; set; }
-        public DbSet<Product> Products { get; set; }
+        public DbSet<Product> products { get; set; }
     }
 }

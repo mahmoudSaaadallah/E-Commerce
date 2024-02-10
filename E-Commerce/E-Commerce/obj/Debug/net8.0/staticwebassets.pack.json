@@ -13,14 +13,6 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "G:\\c#Project\\E-Commerce\\E-Commerce\\wwwroot\\image\\ECommerce_website_as_logo_contaion_basket_with_.jpg",
-      "PackagePath": "staticwebassets\\image\\ECommerce_website_as_logo_contaion_basket_with_.jpg"
-    },
-    {
-      "Id": "G:\\c#Project\\E-Commerce\\E-Commerce\\wwwroot\\image\\ECommerce_website_as_logo_contaion_basket_with_.png",
-      "PackagePath": "staticwebassets\\image\\ECommerce_website_as_logo_contaion_basket_with_.png"
-    },
-    {
       "Id": "G:\\c#Project\\E-Commerce\\E-Commerce\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

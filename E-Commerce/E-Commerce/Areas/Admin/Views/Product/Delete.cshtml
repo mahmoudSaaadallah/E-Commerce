@@ -1,6 +1,6 @@
 ﻿@model Product
 
-<div class="card shadow  border-0 my-4">
+<div class="card shadow  border-0 mt-4">
     <div class="card-header bg-secondary bg-gradient ml-0 py-3">
         <div class="row-height">
             <div class="col-12 text-center ">
@@ -21,22 +21,52 @@
                         Now to specifie the submitting data distenation then we have to use asp-for attribute which accept the data and pass
                         it for a specific attribute in the class inside the model.
                     -->
-                    <input asp-for="Title" disabled class="form-control bold" />
+                    <input asp-for="Title" class="form-control bold row-height" />
                     <!--
                         In the next line of code we will check the validation data in the view also we check the validated data in control
                          this will give us the ability to check data in front end and backend.
                     -->
-
+                   
                 </div>
                 <div class="mb-3">
                     <label class="bold">Description</label>
-                    <input asp-for="Description" disabled class="form-control bold" />
-
+                    <input asp-for="Description" disabled class="form-control bold row-height" />
+                   
+                </div>
+                <div class="mb-3">
+                    <label class="bold">Description</label>
+                    <input asp-for="Description" disabled class="form-control bold row-height" />
+                   
                 </div>
                 <div class="mb-3">
                     <label class="bold">Author</label>
-                    <input asp-for="Author" disabled class="form-control bold" />
-
+                    <input asp-for="Author" disabled class="form-control bold row-height" />
+                   
+                </div>
+                <div class="mb-3">
+                    <label class="bold">ISBN</label>
+                    <input asp-for="ISBN" disabled class="form-control bold row-height" />
+                    
+                </div>
+                <div class="mb-3">
+                    <label class="bold">Price</label>
+                    <input asp-for="Price" disabled class="form-control bold row-height" />
+                   
+                </div>
+                <div class="mb-3">
+                    <label class="bold">Price 50</label>
+                    <input asp-for="Price50" disabled class="form-control bold row-height" />
+                   
+                </div>
+                <div class="mb-3">
+                    <label class="bold">Price 100</label>
+                    <input asp-for="Price100" disabled class="form-control bold row-height" />
+                   
+                </div>
+                <div class="mb-3">
+                    <label class="bold">List Price</label>
+                    <input asp-for="ListPrice" disabled class="form-control bold row-height" />
+                   
                 </div>
                 <div class="row">
                     <div class="col-6">

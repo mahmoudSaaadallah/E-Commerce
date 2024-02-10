@@ -1,46 +1,49 @@
-﻿using E_Commerce.DataAccess.Repository;
+﻿using E_Commerce.DataAccess.Data;
 using E_Commerce.DataAccess.Repository.IRepository;
 using E_Commerce.Models;
+using E_Commerce.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Identity.Client;
-
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Linq;
 
 namespace E_Commerce.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class ProductController : Controller
     {
-        private static string title;
+        // here we will create an object from applicationDbContext to access database to get data to view it
+        //   in the web page.
+        // We have to know that accessing the ApplicationdbContext class is so simple as we already inject this class in the
+        //   the Program.cs using the bulider.
         private readonly IUnitOfWork _unitOfWork;
-        public ProductController(IUnitOfWork unitOfWork)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public ProductController(IUnitOfWork unitOfWork,IWebHostEnvironment webHostEnvironment)
         {
             _unitOfWork = unitOfWork;
-        }
+            _webHostEnvironment = webHostEnvironment;
 
+        }
+        // Now after creating the object lets get data inside the IActionREsult Index method to have the
+        //   ability to use this data in the UI view file.
         public IActionResult Index()
         {
-            List<Product> products = _unitOfWork.Product.GetAll().ToList();
-            IEnumerable<SelectListItem> CategoryListItem = _unitOfWork.Category.GetAll().
-               Select(c => new SelectListItem
-               {
-                   Text = c.Name,
-                   Value = c.Id.ToString()
-               });
-            ViewBag.CategoryList = CategoryListItem;
-            return View(products);
+            // Inside the Action function we could get all the data from the Product table and we will pass them to the View.
+            List<Product> productList = _unitOfWork.Product.GetAll().ToList();
+            return View(productList);
         }
-        public IActionResult Create()
+        public IActionResult Upsert(int? id)
         {
             // Now as we have a relation between category and product tables and we want to retrive categories to display 
             //  them while we create a new product to choose a specific category to each product then we have to get all the
             //   cateories.
-            IEnumerable<SelectListItem> CategoryListItem = _unitOfWork.Category.GetAll().
-                Select(c => new SelectListItem
-                {
-                    Text = c.Name,
-                    Value = c.Id.ToString()
-                });
+            //IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll()
+            //    .Select(c => new SelectListItem
+            //    {
+            //        Text = c.Name,
+            //        Value = c.Id.ToString()
+            //    });
             // Now after we get all the catgories as selectListItem then we have to display them but we can't do this using
             //  the following return view as it accept just one parameter.
 
@@ -97,7 +100,10 @@ namespace E_Commerce.Areas.Admin.Controllers
               */
 
 
-            ViewBag.CategoryList = CategoryListItem;
+            //ViewBag.CategoryList = CategoryList;
+
+
+
 
             // We have another way that called 
             // ViewData
@@ -222,95 +228,100 @@ namespace E_Commerce.Areas.Admin.Controllers
                 Remember to handle null values appropriately when accessing `TempData` to 
                     avoid runtime errors.
              */
-
-            return View();
-        }
-        [HttpPost]
-        public IActionResult Create(Product product)
-        {
-            var titles = _unitOfWork.Product.Select(p => p.Title);
-            if (product == null || !product.Title.Any(char.IsLetter))
+             
+            ProductVM productVM = new()
             {
-                ModelState.AddModelError("Title", "The title must contion letters.");
-            }
-            if (titles.Contains(product.Title))
-            {
-                ModelState.AddModelError("Title", "This title already exist.");
-            }
-            if (ModelState.IsValid)
-            {
-                _unitOfWork.Product.Add(product);
-                _unitOfWork.Save();
-                TempData["success"] = "The Product created succesfully";
-                return RedirectToAction("Index");
-            }
-            return View();
-        }
-        public IActionResult Edit(int id)
-        {
-            if (id == 0 || id == null)
-            {
-                return NotFound();
-            }
-            Product product = _unitOfWork.Product.GetById(id);
-            title = product.Title;
-            IEnumerable<SelectListItem> CategoryListItem = _unitOfWork.Category.GetAll().
-                Select(c => new SelectListItem
+                CategoryList = _unitOfWork.Category.GetAll()
+                .Select(c => new SelectListItem
                 {
                     Text = c.Name,
                     Value = c.Id.ToString()
-                });
-            ViewBag.CategoryList = CategoryListItem;
-            return View(product);
+                }),
+                Product = new Product()
+
+            };
+            if (id == null || id == 0)
+            {
+                // Create
+                return View(productVM);
+            }
+            else
+            {
+                // Update
+                productVM.Product = _unitOfWork.Product.GetById((int)id);
+                return View(productVM);
+            }
+           
         }
+        // Here we repeate the method IActionResult Create, and used the DataAnnotation of type HttpPost and make this 
+        //   this function accept an object of type Product. 
+        // After we accept this object we will add it to the tabe Categories in the data base this will happen inside the method.
+        // The dataAnnotation [HttpPost] must be use here to avoid ambiguate between the frist creat and the second create method.
         [HttpPost]
-        public IActionResult Edit(Product product)
+        public IActionResult Upsert(ProductVM productVM, IFormFile? file)
         {
-            IEnumerable<SelectListItem> CategoryListItem = _unitOfWork.Category.GetAll().
-                Select(c => new SelectListItem
+            
+            // We will use if condation to check if the data is vlaid or not before we add it to database to avoid the errors.
+            // The ModelState here will check the data annotaion that we used in the Product model.
+            if (ModelState.IsValid)
+            {
+                string wwwRootPath = _webHostEnvironment.WebRootPath;
+                if(file != null)
+                {
+                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                    string productPath = Path.Combine(wwwRootPath, @"images\product");
+
+                    using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
+                    {
+                        file.CopyTo(fileStream);
+                    }
+                    productVM.Product.ImageUrl = @"\images\product\" + fileName;
+                }
+
+                _unitOfWork.Product.Add(productVM.Product);
+                _unitOfWork.Save();
+                TempData["success"] = "The Product created successfully.";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                productVM.CategoryList = _unitOfWork.Category.GetAll()
+                .Select(c => new SelectListItem
                 {
                     Text = c.Name,
                     Value = c.Id.ToString()
-                });
-            ViewBag.CategoryList = CategoryListItem;
-
-            var titles = _unitOfWork.Product.Select(p => p.Title);
-            if (titles.Contains(product.Title) && product.Title != title)
-            {
-                ModelState.AddModelError("Title", "This title already exist.");
+                });     
+                return View(productVM);
             }
-            foreach(var c in CategoryListItem)
-            {
-                product.CategoryId = Convert.ToInt32( c.Value);
-                break;
-            }
-            if (ModelState.IsValid)
-            {
-                _unitOfWork.Product.Update(product);
-                _unitOfWork.Save();
-                TempData["success"] = "The product edited successfully.";
-                return RedirectToAction("Index");
-            }
-            return View();
-        }
-        public IActionResult Delete(int id)
+            // These lines of code will add the object to data base 
+            // But we have to use the SaveChanges method to same the changes to data base.
+            
+        } 
+        public ActionResult Delete(int id)
         {
-            if (id == 0 || id == null)
+            if (id == null || id == 0)
             {
                 return NotFound();
             }
-            Product product = _unitOfWork.Product.GetById(id);
+            Product? product = _unitOfWork.Product.GetById(id);
+            if(product == null)
+            {
+                return NotFound();
+            }
             return View(product);
         }
         [HttpPost, ActionName("Delete")]
-        public IActionResult DeletePost(int id)
+        public ActionResult DeletePost(int id)
         {
-            Product product = _unitOfWork.Product.GetById(id);
+            Product? product = _unitOfWork.Product.GetById(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
             _unitOfWork.Product.Remove(product);
-            TempData["success"] = "The product already deleted.";
+            TempData["success"] = "The Product already deleted.";
             _unitOfWork.Save();
             return RedirectToAction("Index");
         }
-
     }
 }

@@ -11,6 +11,8 @@ namespace E_Commerce.DataAccess.Repository.IRepository
     public interface IProductRepository : IRepository<Product>
     {
         void Update(Product product);
+        List<int> Select(Expression<Func<Product, int>> filter);
         List<string> Select(Expression<Func<Product, string>> filter);
+
     }
 }

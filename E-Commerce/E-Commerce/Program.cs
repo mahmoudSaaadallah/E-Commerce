@@ -149,22 +149,22 @@ app.Run();//  Runs the app.
 
 
 
-// Now after connecting to database and adding the Category table to database lets now add a controller for 
-//   the Category
-// So we will go to Controller folder and add a new Controller with name CategoryController.cs
+// Now after connecting to database and adding the Product table to database lets now add a controller for 
+//   the Product
+// So we will go to Controller folder and add a new Controller with name ProductController.cs
 // Not that all the file's name in Controller folder must end with Controller Keyword.
 
 // Then now after adding the controller we have to add its action(View), So we have to go to Views folder
-//   and make a new folder inside it with the same name of controller Category.
-// Inside the Views/Category folder we will creat new view file with name Index.cshtml
+//   and make a new folder inside it with the same name of controller Product.
+// Inside the Views/Product folder we will creat new view file with name Index.cshtml
 
-// Now after creating the view to Category then we want to add the Category page refernce or link in the nav par
-//    that already defined in _Layout.cshtml file, so we will go there and add Category link.
+// Now after creating the view to Product then we want to add the Product page refernce or link in the nav par
+//    that already defined in _Layout.cshtml file, so we will go there and add Product link.
 
-// Then now lets go to application DbContext to add some data to Category using OnModelCreating method.
+// Then now lets go to application DbContext to add some data to Product using OnModelCreating method.
 
-// After adding data to Category table we want to display this data inside the category page in web.
-// To do so we have to back again to CategoryController.cs to add the Dbcontext object who will access
+// After adding data to Product table we want to display this data inside the product page in web.
+// To do so we have to back again to ProductController.cs to add the Dbcontext object who will access
 //   database and get data, 
 // Now after creating the object lets get data inside the IActionREsult Index method to have the
 //   ability to use this data in the UI view file.

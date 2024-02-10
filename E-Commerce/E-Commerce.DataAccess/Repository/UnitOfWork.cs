@@ -16,16 +16,14 @@ namespace E_Commerce.DataAccess.Repository
         public ICategoryRepository Category { get; }
         public IProductRepository Product { get; }
 
-
         public UnitOfWork(ApplicationDbContext context)
         {
 
             _context = context;
             Category = new CategoryRepository(_context);
             Product = new ProductRepository(_context);
-        }
-       
 
+        }      
         public void Save()
         {
             _context.SaveChanges();

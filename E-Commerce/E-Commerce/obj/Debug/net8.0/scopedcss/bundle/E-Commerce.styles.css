@@ -1,7 +1,7 @@
 @import '_content/Microsoft.AspNetCore.Components.QuickGrid/Microsoft.AspNetCore.Components.QuickGrid.bundle.scp.css';
 
 /* _content/E-Commerce/Views/Shared/_Layout.cshtml.rz.scp.css */
-/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
 a.navbar-brand[b-4yuo1jszy4] {
@@ -10,9 +10,9 @@ a.navbar-brand[b-4yuo1jszy4] {
   word-break: break-all;
 }
 
-a[b-4yuo1jszy4] {
+/*a {
   color: #0077cc;
-}
+}*/
 
 .btn-primary[b-4yuo1jszy4] {
   color: #fff;

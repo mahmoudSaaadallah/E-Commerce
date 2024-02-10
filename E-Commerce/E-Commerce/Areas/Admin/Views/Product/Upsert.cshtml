@@ -1,0 +1,149 @@
+﻿<!--
+    We have to know that when we add a new product we have to send our data to the Product class so we have to add it in the
+    Model so the next line of code use the Product class with model to use it in our code.
+    We don't have to return the new object of the product from inside the IActionResult Create method as we alread uses here a 
+    product class, so we don't have to retrun it as it will make a new object by default.
+-->
+@model ProductVM
+
+<div class="card shadow  border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row-height">
+            <div class="col-12 text-center ">
+                <h2 class="text-white py-1">@(Model.Product.Id != 0?"Edit" : "Create") Product</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body py-2">
+        <form method="post" class="row" enctype="multipart/form-data">
+            <input asp-for="Product.Id" hidden />
+            <div class="row">
+                <div class="col-10">
+                    <div class="border p-3 mt-7">
+                        <div class="row pb-2">
+                            <hr />
+                        </div>
+                        <div class="mb-3">
+                            <label class="bold">Product Name</label>
+                            <!--
+                                Now to specifie the submitting data distenation then we have to use asp-for attribute which accept the data and pass
+                                it for a specific attribute in the class inside the model.
+                            -->
+                            <input asp-for="Product.Title" class="form-control bold row-height" />
+                            <!--
+                                In the next line of code we will check the validation data in the view also we check the validated data in control
+                                 this will give us the ability to check data in front end and backend.
+                            -->
+                            <span asp-validation-for="Product.Title" class="text-danger bold"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="bold">Description</label>
+                            <textarea asp-for="Product.Description" class="form-control bold row-height"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="bold">Author</label>
+                            <input asp-for="Product.Author" class="form-control bold row-height" />
+                            <span asp-validation-for="Product.Author" class="text-danger bold"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="bold">ISBN</label>
+                            <input asp-for="Product.ISBN" class="form-control bold row-height" />
+                            <span asp-validation-for="Product.ISBN" class="text-danger bold"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="bold">Price</label>
+                            <input asp-for="Product.Price" class="form-control bold row-height" />
+                            <span asp-validation-for="Product.Price" class="text-danger bold"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="bold">Price 50</label>
+                            <input asp-for="Product.Price50" class="form-control bold row-height" />
+                            <span asp-validation-for="Product.Price50" class="text-danger bold"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="bold">Price 100</label>
+                            <input asp-for="Product.Price100" class="form-control bold row-height" />
+                            <span asp-validation-for="Product.Price100" class="text-danger bold"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="bold">List Price</label>
+                            <input asp-for="Product.ListPrice" class="form-control bold row-height" />
+                            <span asp-validation-for="Product.ListPrice" class="text-danger bold"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="bold" asp-for="Product.CategoryId">Category</label>
+                            <select asp-for="@Model.Product.CategoryId" asp-items="@Model.CategoryList" class="form-select bold row-height">
+                                <option disabled selected>--Select Category--</option>
+                            </select>
+                            <span asp-validation-for="Product.CategoryId" class="text-danger bold"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="bold">Image</label>
+                            <input type="file" name="file" class="form-control bold row-height" />
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-6">
+                                @if (Model.Product.Id != 0)
+                                {
+                                    <button type="submit" class="btn btn-success form-control rounded-3"><strong>Update</strong></button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-success form-control rounded-3"><strong>Create </strong></button>
+                                }
+
+                            </div>
+                            <div class="col-6">
+                                <a asp-controller="Product" asp-action="Index" class="btn btn-dark form-control rounded-3"><strong>Back</strong></a>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+                <div class="col-2">
+                    <img src = "@Model.Product.ImageUrl" width="100%"
+                    style="border-radius:5px; border:1px solid #bbb9b9" />
+                </div>
+            </div>
+            
+        </form>
+    </div>
+</div>
+<!--
+    We have to know that the form in html has a method attribute which accept two different values 
+    - Get: This method appends the form data to the URL in the form of query parameters. It is suitable for forms that
+             retrieve data from the server, and the data is visible in the URL.
+    - Post: This method sends the form data to the server in the request body. It is suitable for forms that submit sensitive  
+            or large amounts of data, and the data is not visible in the URL.
+-->
+
+<!--
+    In the following Section we make a scripts section to check the client validation and check all the validation in the 
+    client side instead of doing it in the server side.
+-->
+@section scripts{
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons  link lists  table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap ',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ],
+            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+        });
+    </script> 
+    @{
+        <partial name = "_ValidationScriptsPartial" />
+
+    }
+}

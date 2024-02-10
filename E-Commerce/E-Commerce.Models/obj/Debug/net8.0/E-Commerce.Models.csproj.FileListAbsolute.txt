@@ -9,3 +9,6 @@ G:\c#Project\E-Commerce\E-Commerce.Models\obj\Debug\net8.0\E-Commerce.Models.dll
 G:\c#Project\E-Commerce\E-Commerce.Models\obj\Debug\net8.0\refint\E-Commerce.Models.dll
 G:\c#Project\E-Commerce\E-Commerce.Models\obj\Debug\net8.0\E-Commerce.Models.pdb
 G:\c#Project\E-Commerce\E-Commerce.Models\obj\Debug\net8.0\ref\E-Commerce.Models.dll
+G:\c#Project\E-Commerce\E-Commerce.Models\obj\Debug\net8.0\E-Commerce.Models.csproj.AssemblyReference.cache
+G:\c#Project\E-Commerce\E-Commerce.Models\bin\Debug\net8.0\E-Commerce.Models.runtimeconfig.json
+G:\c#Project\E-Commerce\E-Commerce.Models\obj\Debug\net8.0\E-Commerce.Models.genruntimeconfig.cache
